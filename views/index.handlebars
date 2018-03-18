@@ -44,3 +44,26 @@
 		</div>
 	</div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+  $(".change-devour").click(function (event) {
+	  event.preventDefault();
+    var updateEaten = {
+      devoured: true
+    };
+      var id = $(this).attr("id");
+    console.log(id);
+    // Send the PUT request.
+    $.ajax("/burgers/update/" + id, {
+      type: "PUT",
+      data: updateEaten
+    }).then(
+      function () {
+        console.log("you ate the burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  }); 
+  </script>
